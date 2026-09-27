@@ -1,0 +1,41 @@
+{
+  "name": "Calisthenics Quest",
+  "short_name": "CQ Quest",
+  "description": "La tua app di calisthenics con allenamenti, XP, livelli, premi e avatar evolutivo.",
+  "lang": "it-IT",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#08101f",
+  "theme_color": "#0a1020",
+  "categories": ["health", "fitness", "sports", "lifestyle"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Allenamento di oggi",
+      "short_name": "Oggi",
+      "description": "Apri la missione di allenamento di oggi.",
+      "url": "./index.html#home"
+    },
+    {
+      "name": "Il mio avatar",
+      "short_name": "Avatar",
+      "description": "Apri il tuo profilo atleta e l'avatar evolutivo.",
+      "url": "./index.html#home"
+    }
+  ]
+}

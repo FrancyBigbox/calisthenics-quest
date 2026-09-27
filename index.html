@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a1020" />
+  <meta name="description" content="Calisthenics Quest: la tua app di allenamento con XP, livelli e avatar evolutivo." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Calisthenics Quest</title>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Calisthenics Quest Home">
+        <span class="brand-mark">CQ</span>
+        <span>
+          <strong>Calisthenics Quest</strong>
+          <small>Allenati. Evolvi. Domina la tua quest.</small>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <button class="icon-button" id="themeButton" type="button" aria-label="Cambia tema" title="Cambia tema">
+          <span aria-hidden="true">☀️</span>
+        </button>
+        <button class="profile-button" id="profileButton" type="button" aria-label="Apri profilo">
+          <span class="profile-level" id="headerLevel">1</span>
+          <span class="profile-label">Livello</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero-grid">
+        <article class="panel player-panel">
+          <div class="player-heading">
+            <div>
+              <p class="eyebrow">IL TUO CAMPIONE</p>
+              <h1 id="heroTitle">Recluta determinato</h1>
+              <p class="muted" id="heroSubtitle">Completa missioni per costruire il tuo fisico.</p>
+            </div>
+            <button class="ghost-button" id="wardrobeButton" type="button">Guardaroba</button>
+          </div>
+
+          <div class="avatar-stage">
+            <div class="stage-glow" aria-hidden="true"></div>
+            <div class="level-orbit orbit-one" aria-hidden="true"></div>
+            <div class="level-orbit orbit-two" aria-hidden="true"></div>
+
+            <!-- L'aspetto del personaggio viene aggiornato da app.js. -->
+            <svg class="fighter-avatar" id="fighterAvatar" viewBox="0 0 420 480" role="img" aria-labelledby="fighterLabel">
+              <title id="fighterLabel">Il tuo avatar atleta</title>
+              <defs>
+                <linearGradient id="skinGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#9d5e43" />
+                  <stop offset="0.5" stop-color="#d9966b" />
+                  <stop offset="1" stop-color="#f5c29f" />
+                </linearGradient>
+                <linearGradient id="hairGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#13192b" />
+                  <stop offset="1" stop-color="#49345d" />
+                </linearGradient>
+                <linearGradient id="shirtGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#4c82ff" />
+                  <stop offset="1" stop-color="#a96cff" />
+                </linearGradient>
+                <linearGradient id="capeGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ff6179" />
+                  <stop offset="1" stop-color="#a42c72" />
+                </linearGradient>
+                <filter id="avatarGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="7" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <ellipse cx="210" cy="442" rx="126" ry="20" class="avatar-shadow" />
+              <g id="avatarAura" opacity="0">
+                <circle cx="210" cy="242" r="156" class="aura-ring" />
+                <circle cx="210" cy="242" r="133" class="aura-ring aura-ring-soft" />
+              </g>
+
+              <g id="fighterBody" transform="translate(0 0) scale(1)">
+                <path id="avatarCape" d="M263 176 C337 222 337 362 270 401 L249 322 Z" fill="url(#capeGradient)" opacity="0" />
+                <path id="avatarLeftArm" d="M148 192 C103 203 82 254 87 333 C88 361 104 374 121 366 C138 358 143 334 141 303 L155 231 Z" fill="url(#skinGradient)" />
+                <path id="avatarRightArm" d="M272 192 C317 203 338 254 333 333 C332 361 316 374 299 366 C282 358 277 334 279 303 L265 231 Z" fill="url(#skinGradient)" />
+                <path id="avatarTorso" d="M157 177 C180 161 240 161 263 177 C281 214 280 338 259 375 C229 393 190 393 161 375 C140 338 139 214 157 177 Z" fill="url(#skinGradient)" />
+                <path id="avatarPants" d="M160 364 C187 381 234 381 260 364 L270 430 L222 430 L210 385 L198 430 L150 430 Z" fill="#263251" opacity="0" />
+                <path id="avatarBelt" d="M156 354 C191 370 231 370 264 354 L264 371 C231 387 190 387 156 371 Z" fill="#f6c744" opacity="0" />
+                <path id="avatarShirt" d="M153 180 C183 163 238 163 267 180 L276 330 C238 349 182 349 144 330 Z" fill="url(#shirtGradient)" opacity="0" />
+
+                <g id="avatarMuscles" opacity="0">
+                  <path d="M163 223 C184 210 196 210 210 224 C224 210 238 210 258 223" class="muscle-line" />
+                  <path d="M158 263 C181 278 237 278 263 263" class="muscle-line" />
+                  <path d="M158 301 C181 318 239 318 262 301" class="muscle-line" />
+                  <path d="M185 198 L182 340" class="muscle-line" />
+                  <path d="M235 198 L238 340" class="muscle-line" />
+                </g>
+
+                <path id="avatarNeck" d="M191 133 L229 133 L236 180 L184 180 Z" fill="url(#skinGradient)" />
+                <ellipse cx="210" cy="101" rx="52" ry="61" fill="url(#skinGradient)" />
+                <path d="M158 88 C162 43 195 29 212 31 C251 33 267 59 264 91 C247 73 224 63 198 67 C182 70 170 77 158 88 Z" fill="url(#hairGradient)" />
+                <path d="M171 69 C195 39 237 45 255 75 C235 59 195 53 171 69 Z" fill="#0d1425" opacity="0.45" />
+                <circle cx="192" cy="106" r="4.5" fill="#241918" />
+                <circle cx="228" cy="106" r="4.5" fill="#241918" />
+                <path d="M198 130 Q210 138 222 130" fill="none" stroke="#914f46" stroke-width="3" stroke-linecap="round" />
+                <path id="avatarHeadband" d="M157 84 C188 71 232 71 264 84 L262 96 C230 85 188 85 159 96 Z" fill="#ff5e73" opacity="0" />
+              </g>
+            </svg>
+
+            <div class="avatar-badge">
+              <span class="badge-dot"></span>
+              <span id="avatarEvolutionLabel">Fisico: base secca</span>
+            </div>
+          </div>
+
+          <div class="avatar-footer">
+            <div>
+              <span class="tiny-label">EVOLUZIONE FISICA</span>
+              <strong id="muscleProgressText">0% · Ogni missione conta</strong>
+            </div>
+            <div class="mini-progress"><i id="muscleProgressBar"></i></div>
+          </div>
+        </article>
+
+        <article class="panel progress-panel">
+          <div class="progress-topline">
+            <div>
+              <p class="eyebrow">PROGRESSIONE</p>
+              <h2>Livello <span id="levelNumber">1</span></h2>
+            </div>
+            <div class="rank-chip" id="rankChip">RECLUTA</div>
+          </div>
+
+          <div class="xp-card">
+            <div class="xp-card-head">
+              <span>Esperienza</span>
+              <strong id="xpNumbers">0 / 100 XP</strong>
+            </div>
+            <div class="xp-progress"><i id="xpProgress"></i></div>
+            <p id="xpHint">Completa esercizi e sedute per salire di livello.</p>
+          </div>
+
+          <div class="score-grid">
+            <div class="score-card"><span>⚡</span><strong id="totalXp">0</strong><small>XP totali</small></div>
+            <div class="score-card"><span>🪙</span><strong id="coins">0</strong><small>Monete</small></div>
+            <div class="score-card"><span>🔥</span><strong id="streak">0</strong><small>Streak</small></div>
+            <div class="score-card"><span>🏆</span><strong id="sessions">0</strong><small>Sedute</small></div>
+          </div>
+
+          <section class="next-reward">
+            <div class="reward-icon" id="nextRewardIcon">🎁</div>
+            <div>
+              <span class="tiny-label">PROSSIMO PREMIO</span>
+              <strong id="nextRewardName">Maglia da campione</strong>
+              <p id="nextRewardText">Raggiungi il livello 2 per sbloccarla.</p>
+            </div>
+          </section>
+        </article>
+      </section>
+
+      <section class="panel schedule-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MISSIONI SETTIMANALI</p>
+            <h2 id="dayTitle">Lunedì · Calisthenics A</h2>
+            <p class="muted" id="weekDateRange">La settimana si resetta automaticamente ogni lunedì.</p>
+          </div>
+          <div class="heading-actions">
+            <button class="ghost-button" id="lightSessionButton" type="button">⚡ Seduta leggera</button>
+            <button class="primary-button" id="finishSessionButton" type="button">Completa seduta</button>
+          </div>
+        </div>
+
+        <nav class="day-tabs" id="dayTabs" aria-label="Giorni della settimana">
+          <!-- Popolato da app.js -->
+        </nav>
+
+        <div class="training-note" id="trainingNote">
+          <span>🛡️</span>
+          <p>Regola: tecnica pulita e niente cedimento. Devi rimanere fresco per il calcio.</p>
+        </div>
+
+        <section class="exercise-list" id="exerciseList" aria-live="polite">
+          <!-- Popolato da app.js -->
+        </section>
+      </section>
+
+      <section class="panel weekly-panel">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">STATO SETTIMANALE</p>
+            <h2>La tua campagna</h2>
+          </div>
+          <button class="ghost-button" id="resetWeekButton" type="button">↻ Reimposta settimana</button>
+        </div>
+        <div class="weekly-grid" id="weeklyGrid">
+          <!-- Popolato da app.js -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="exerciseTemplate">
+    <article class="exercise-card">
+      <div class="exercise-check" aria-hidden="true">✓</div>
+      <div class="exercise-main">
+        <div class="exercise-heading">
+          <div>
+            <span class="exercise-type"></span>
+            <h3 class="exercise-name"></h3>
+            <p class="exercise-detail"></p>
+          </div>
+          <span class="exercise-xp"></span>
+        </div>
+        <div class="exercise-controls"></div>
+      </div>
+    </article>
+  </template>
+
+  <template id="manualCounterTemplate">
+    <div class="counter-controls">
+      <button class="round-button decrement-button" type="button" aria-label="Riduci ripetizioni">−</button>
+      <div class="rep-counter"><strong class="rep-current">0</strong><span class="rep-target">/ 0</span></div>
+      <button class="round-button increment-button" type="button" aria-label="Aggiungi ripetizione">+1</button>
+      <button class="voice-button" type="button">🎙️ Voce</button>
+      <button class="done-button" type="button">✓ Completa</button>
+      <span class="control-status">Usa +1 oppure la voce.</span>
+    </div>
+  </template>
+
+  <template id="timerTemplate">
+    <div class="timer-controls">
+      <button class="timer-start-button" type="button">▶ Via</button>
+      <div class="timer-display">00:00</div>
+      <button class="small-control timer-reset-button" type="button" aria-label="Reimposta timer">↺</button>
+      <button class="done-button" type="button">✓ Completa</button>
+      <span class="control-status">Premi Via per iniziare.</span>
+    </div>
+  </template>
+
+  <template id="checkTemplate">
+    <div class="check-controls">
+      <button class="done-button large" type="button">✓ Segna completato</button>
+      <span class="control-status">Segna quando hai concluso la missione.</span>
+    </div>
+  </template>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalCloseButton" type="button" aria-label="Chiudi finestra">×</button>
+      <div class="modal-icon" id="modalIcon">🏆</div>
+      <p class="eyebrow" id="modalEyebrow">MISSIONE</p>
+      <h2 id="modalTitle">Ottimo lavoro!</h2>
+      <p id="modalText">Hai completato una missione.</p>
+      <div class="modal-reward" id="modalReward" hidden></div>
+      <button class="primary-button modal-confirm" id="modalConfirmButton" type="button">Continua</button>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    }
+  </script>
+</body>
+</html>
